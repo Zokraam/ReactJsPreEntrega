@@ -1,23 +1,19 @@
-import React from 'react';
-import { useState } from 'react';
-import './ItemCount.css'
+import { useCount } from "../../hooks/useCount"
 
-export const ItemCount = () => {
-    const [contador, setContador] = useState(1)
+const ItemCount = ({ ValInicial, minimo, maximo, onAdd }) => {
+    
+   const {count, sum, minus, reset} = useCount (ValInicial, minimo, maximo)
 
-    const sum = () => {
-        setContador(contador + 1)
-    }
-
-    const res = () => {
-        setContador(contador - 1)
-    }
-
-    return (
-        <div className='ItemCount __container'>
-            <button onClick={() => { res() }}>-</button>
-            {contador}
-            <button onClick={() => { sum() }}>+</button>
-        </div>
-    );
+  
+  return (
+    <>
+      <button className="btn btn-secondary" onClick={minus}>-</button>
+      {count}
+      <button className="btn btn-secondary" onClick={sum}>+</button>
+      <button className="btn btn-secondary" onClick={reset}>Reset</button>
+      <button className="btn btn-secondary" onClick={() => onAdd(count)}>Agregar al Carrito</button>
+    </>
+  )
 }
+
+export default ItemCount;

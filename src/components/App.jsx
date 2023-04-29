@@ -1,27 +1,27 @@
 import './App.css';
-import { ItemCount } from './ItemCount/ItemCount';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import React from 'react';
-import { NavBar } from './NavBar/NavBar';
-import { ItemListContainer } from './ItemListContainer/ItemListContainer'
-export const App = () => {
+import NavBar from './NavBar/NavBar';
+import ItemListContainer from './ItemListContainer/ItemListContainer';
+import ItemDetailContainer from './ItemDetailContainer/ItemDetailContainer';
+
+const App = () => {
   return (
-    <div>
-      <NavBar />
+    <>
+      <BrowserRouter>
+        <NavBar />
+          <Routes>
+            <Route path='/' element= {<ItemListContainer/>}/>
+            <Route path='/category/:category' element= {<ItemListContainer/>}/>
+            <Route path='/product/:id' element= {<ItemDetailContainer/>}/>
 
-
-      <ItemCount />
-      <ItemListContainer greeting={"PRODUCTOS"}/>
-    </div>
+          </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
-/*
-<Saludo mensaje={"Hola, Buenos días!"} traduccion={"Hi, good morning!"}/> 
+export default App;
 
-
-HTML                JSX
-class               className
-<input>             <input />
-`${variable}`       {variable}
-
-*/
